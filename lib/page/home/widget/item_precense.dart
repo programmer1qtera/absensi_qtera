@@ -85,9 +85,9 @@ class ItemPrecense extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text('Alamat'),
+                          Text('Lokasi'),
                           SizedBox(
-                            width: 49,
+                            width: 55,
                           ),
                           Text(':'),
                           SizedBox(

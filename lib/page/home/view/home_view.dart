@@ -1,5 +1,6 @@
 import 'package:absensi_qtera_mandiri/page/absensi/absensi_view.dart';
 import 'package:absensi_qtera_mandiri/page/home/controller/home_controller.dart';
+import 'package:absensi_qtera_mandiri/page/home/widget/item_paid_leave.dart';
 import 'package:absensi_qtera_mandiri/page/home/widget/item_precense.dart';
 import 'package:absensi_qtera_mandiri/page/home/widget/item_sick.dart';
 import 'package:flutter/material.dart';
@@ -118,14 +119,14 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 10,
             ),
-            // ListView.builder(
-            //   physics: NeverScrollableScrollPhysics(),
-            //   shrinkWrap: true,
-            //   itemCount: 3,
-            //   itemBuilder: (context, index) {
-            //     return ItemSick();
-            //   },
-            // ),
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 3,
+              itemBuilder: (context, index) {
+                return ItemPaidLeave();
+              },
+            ),
           ],
         );
       }),
