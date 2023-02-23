@@ -1,5 +1,6 @@
 import 'package:absensi_qtera_mandiri/page/home/controller/home_controller.dart';
 import 'package:absensi_qtera_mandiri/page/izin/izin_controller.dart';
+import 'package:absensi_qtera_mandiri/page/main_page/main_page.dart';
 import 'package:absensi_qtera_mandiri/page/paid_leave/paid_leave_view.dart';
 import 'package:absensi_qtera_mandiri/page/sick/sick_view.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class IzinView extends GetView<IzinControler> {
-  const IzinView({super.key});
+  IzinView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,11 @@ class IzinView extends GetView<IzinControler> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Izin'),
+          leading: IconButton(
+              onPressed: () {
+                Get.offAll(MainPage());
+              },
+              icon: Icon(Icons.arrow_back)),
         ),
         body: GetBuilder<IzinControler>(builder: (c) {
           return ListView(

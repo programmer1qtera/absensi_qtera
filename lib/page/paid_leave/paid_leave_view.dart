@@ -1,3 +1,4 @@
+import 'package:absensi_qtera_mandiri/page/paid_leave/paid_leave_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -8,6 +9,7 @@ class PaidLeaveView extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(PaidLeaveController());
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -24,7 +26,11 @@ class PaidLeaveView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Surat_Cuti.pdf'),
-                  ElevatedButton(onPressed: () {}, child: Text('Pilih File'))
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getFile();
+                      },
+                      child: Text('Pilih File'))
                 ],
               ),
             ],
@@ -42,8 +48,16 @@ class PaidLeaveView extends GetView {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('02/03/2023'),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.date_range))
+                  GetBuilder<PaidLeaveController>(builder: (c) {
+                    return Text(c.getDateTime == null
+                        ? 'Pilih Tanggal'
+                        : '${c.getDateTime}');
+                  }),
+                  IconButton(
+                      onPressed: () {
+                        controller.getCalender(context);
+                      },
+                      icon: Icon(Icons.date_range))
                 ],
               ),
             ],

@@ -1,13 +1,13 @@
+import 'package:absensi_qtera_mandiri/page/sick/sick_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
-class SickView extends GetView {
+class SickView extends GetView<SickController> {
   const SickView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(SickController());
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -24,21 +24,33 @@ class SickView extends GetView {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Surat_sakit.pdf'),
-                  ElevatedButton(onPressed: () {}, child: Text('Pilih File'))
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getFile();
+                      },
+                      child: Text('Pilih File'))
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Surat_copy_resep.pdf'),
-                  ElevatedButton(onPressed: () {}, child: Text('Pilih File'))
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getFile2();
+                      },
+                      child: Text('Pilih File'))
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Surat_dokter.pdf'),
-                  ElevatedButton(onPressed: () {}, child: Text('Pilih File'))
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getFile3();
+                      },
+                      child: Text('Pilih File'))
                 ],
               ),
             ],
@@ -56,8 +68,16 @@ class SickView extends GetView {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('02/03/2023'),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.date_range))
+                  GetBuilder<SickController>(builder: (c) {
+                    return Text(c.getDateTime == null
+                        ? 'Pilih Tanggal Pengajuan'
+                        : '${c.getDateTime}');
+                  }),
+                  IconButton(
+                      onPressed: () {
+                        controller.getCalender(context);
+                      },
+                      icon: Icon(Icons.date_range))
                 ],
               ),
             ],

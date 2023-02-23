@@ -1,4 +1,4 @@
-import 'package:absensi_qtera_mandiri/page/absensi/absensi_view.dart';
+import 'package:absensi_qtera_mandiri/page/precense/precense_view.dart';
 import 'package:absensi_qtera_mandiri/page/home/controller/home_controller.dart';
 import 'package:absensi_qtera_mandiri/page/home/widget/item_paid_leave.dart';
 import 'package:absensi_qtera_mandiri/page/home/widget/item_precense.dart';
@@ -74,14 +74,28 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 10,
             ),
-            ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: c.isPrecense == false ? 2 : 6,
-              itemBuilder: (context, index) {
-                return ItemPrecense();
-              },
-            ),
+            c.isLoading == true
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : c.results.dataPrecense == null
+                    ? Center(
+                        child: Text('Belum Absen sama sekali'),
+                      )
+                    : ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: c.isPrecense == true
+                            ? c.results.dataPrecense!.length
+                            : 1,
+                        itemBuilder: (context, index) {
+                          var dataPrecense =
+                              controller.results.dataPrecense![index];
+                          return ItemPrecense(
+                            dataPrecenses: dataPrecense,
+                          );
+                        },
+                      ),
             SizedBox(
               height: 20,
             ),

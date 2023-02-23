@@ -49,21 +49,21 @@ class LoginView extends GetView<LoginController> {
               const SizedBox(
                 height: 30,
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.off(MainPage());
-                    // controller.login();
-                  },
-                  child: Text('Login'))
-              // GetBuilder<LoginController>(builder: (c) {
-              //   return c.isLoading == true
-              //       ? CircularProgressIndicator()
-              //       : ElevatedButton(
-              //           onPressed: () {
-              //             controller.login();
-              //           },
-              //           child: const Text('Login'));
-              // }),
+              // ElevatedButton(
+              //     onPressed: () {
+              //       // Get.off(MainPage());
+              //       controller.login();
+              //     },
+              //     child: Text('Login')),
+              GetBuilder<LoginController>(builder: (c) {
+                return c.isLoading == true
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: () {
+                          controller.login();
+                        },
+                        child: const Text('Login'));
+              }),
             ],
           ),
         ],

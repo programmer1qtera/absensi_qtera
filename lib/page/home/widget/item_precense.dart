@@ -1,9 +1,11 @@
+import 'package:absensi_qtera_mandiri/model/precense_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class ItemPrecense extends StatelessWidget {
-  const ItemPrecense({super.key});
+  PrecenseItem dataPrecenses;
+  ItemPrecense({super.key, required this.dataPrecenses});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,12 @@ class ItemPrecense extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Masuk',
-              style: TextStyle(fontSize: 18, color: Colors.greenAccent),
+              '${dataPrecenses.status}',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: dataPrecenses.status == 'Masuk'
+                      ? Colors.greenAccent
+                      : Colors.red),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -44,7 +50,7 @@ class ItemPrecense extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(child: Text('Qtera Mandiri'))
+                          Expanded(child: Text('${dataPrecenses.place}'))
                         ],
                       ),
                       SizedBox(
@@ -60,7 +66,7 @@ class ItemPrecense extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text('01 : 25')
+                          Text('${dataPrecenses.inn}')
                         ],
                       ),
                       SizedBox(
@@ -77,13 +83,15 @@ class ItemPrecense extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Expanded(child: Text('Kamis, 23 Juli 2023'))
+                          Expanded(child: Text('${dataPrecenses.date}'))
                         ],
                       ),
                       SizedBox(
                         height: 8,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Lokasi'),
                           SizedBox(
@@ -93,7 +101,7 @@ class ItemPrecense extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text('Kelapa Gading')
+                          Expanded(child: Text('${dataPrecenses.addres}'))
                         ],
                       ),
                     ],
